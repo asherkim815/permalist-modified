@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Permalist</title>
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+
+  <body>
+    <main>
+      <h1></h1>
+
+      <div class="items">
+        <% if (locals.items) { items.forEach(item => { %>
+
+        <div class="item">
+          <form action="/delete" method="post">
+            <input
+              type="checkbox"
+              name="deleteId"
+              value="<%= item.id %>"
+              onchange="this.form.submit()"
+            />
+          </form>
+
+          <p id="task<%= item.id %>"><%= item.task %></p>
+
+          <button id="edit<%= item.id %>" onclick="handler('<%= item.id %>')">
+            <img
+              src="icons/pencil-solid.svg"
+              alt="button in the shape of a check: click it or press enter to finish editing"
+            />
+          </button>
+
+          <form action="/edit" method="post">
+            <input type="hidden" name="editId" value="<%= item.id %>" />
+            <input
+              id="input<%= item.id %>"
+              type="text"
+              name="editTask"
+              value="<%= item.task %>"
+              autocomplete="off"
+              autofocus
+              hidden
+            />
+            <button id="submit<%= item.id %>" type="submit" hidden>
+              <img
+                src="icons/check-solid.svg"
+                alt="button in the shape of a pencil: click it to start editing"
+              />
+            </button>
+          </form>
+        </div>
+
+        <% })} %>
+
+        <form class="item add" action="/add" method="post">
+          <input
+            type="text"
+            name="addTask"
+            placeholder="Write a new task"
+            autocomplete="off"
+            autofocus
+          />
+          <button type="submit">+</button>
+        </form>
+      </div>
+    </main>
+
+    <footer></footer>
+
+    <script>
+      const days = [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+      ];
+      const now = new Date();
+      const todayDate = now.toLocaleDateString();
+      const todayDay = days[now.getDay()];
+      const year = now.getFullYear();
+
+      document.querySelector('h1').innerText = `${todayDate} ${todayDay}`;
+      document.querySelector(
+        'footer'
+      ).innerText = `©${year} The App Brewery \n Modified by Asher Kim`;
+
+      function handler(id) {
+        document.querySelector(`#task${id}`).hidden = true;
+        document.querySelector(`#edit${id}`).hidden = true;
+        document.querySelector(`#input${id}`).hidden = false;
+        document.querySelector(`#submit${id}`).hidden = false;
+      }
+    </script>
+  </body>
+</html>
