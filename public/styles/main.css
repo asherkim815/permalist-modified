@@ -20,23 +20,29 @@ main {
 h1 {
   margin: 50px 0;
   padding: 10px;
-  background-color: #a683e3;
   border-radius: 5px;
-  box-shadow: 5px 5px 10px #00000025;
   text-align: center;
+  background-color: #a683e3;
+  box-shadow: 5px 5px 10px #00000025;
 }
 
 .items {
-  background-color: white;
   border-radius: 5px;
+  background-color: white;
   box-shadow: 5px 5px 10px #00000025;
 }
 
 .item {
   padding: 10px;
   display: flex;
-  align-items: baseline;
+  justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid #a683e350;
+}
+
+.item-part1 {
+  display: flex;
+  align-items: center;
 }
 
 input[type='checkbox'] {
@@ -48,39 +54,36 @@ p {
 }
 
 input[type='text'] {
-  padding: 10px;
-  font-size: 18px;
+  padding: 5px;
+  width: 309px;
   border: none;
   outline: none;
+  font-size: 18px;
 }
 
 input[type='text']:focus {
-  outline: none;
   box-shadow: inset 0 -3px #a683e3;
 }
 
 button {
-  min-width: 18px;
   margin: 0 5px 0 15px;
-  background: none;
+  width: 18px;
   border: none;
+  background: none;
 }
 
-.add {
-  align-items: center;
-}
-
-.add input[type='text'] {
+.add-task input[type='text'] {
   margin-left: 5px;
+  width: 323px;
 }
 
-.add button {
+.add-task button {
   height: 32px;
   width: 32px;
   border-radius: 50%;
   font-size: 24px;
-  color: white;
   background-color: #a683e3;
+  color: white;
 }
 
 footer {
@@ -96,5 +99,14 @@ footer {
 
   h1 {
     padding: 10px 0;
+  }
+
+  input[type='text'] {
+    width: 209px;
+  }
+
+  .add-task input[type='text'] {
+    margin-left: 5px;
+    width: 223px;
   }
 }

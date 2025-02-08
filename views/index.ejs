@@ -15,50 +15,60 @@
         <% if (locals.items) { items.forEach(item => { %>
 
         <div class="item">
-          <form action="/delete" method="post">
-            <input
-              type="checkbox"
-              name="deleteId"
-              value="<%= item.id %>"
-              onchange="this.form.submit()"
-            />
-          </form>
+          <div class="item-part1">
+            <form action="/delete" method="post">
+              <input
+                type="checkbox"
+                name="delete-id"
+                value="<%= item.id %>"
+                onchange="this.form.submit()"
+              />
+            </form>
+            <p id="task<%= item.id %>"><%= item.task %></p>
+            <form id="edit<%= item.id %>" action="/edit" method="post">
+              <input type="hidden" name="edit-id" value="<%= item.id %>" />
+              <input
+                id="edit-input<%= item.id %>"
+                type="text"
+                name="edit-task"
+                value="<%= item.task %>"
+                autocomplete="off"
+                hidden
+              />
+            </form>
+          </div>
 
-          <p id="task<%= item.id %>"><%= item.task %></p>
-
-          <button id="edit<%= item.id %>" onclick="handler('<%= item.id %>')">
-            <img
-              src="icons/pencil-solid.svg"
-              alt="button in the shape of a check: click it or press enter to finish editing"
-            />
-          </button>
-
-          <form action="/edit" method="post">
-            <input type="hidden" name="editId" value="<%= item.id %>" />
-            <input
-              id="input<%= item.id %>"
-              type="text"
-              name="editTask"
-              value="<%= item.task %>"
-              autocomplete="off"
-              autofocus
-              hidden
-            />
-            <button id="submit<%= item.id %>" type="submit" hidden>
+          <div class="item-part2">
+            <button
+              id="edit-start<%= item.id %>"
+              onclick="handler('<%= item.id %>')"
+            >
               <img
-                src="icons/check-solid.svg"
-                alt="button in the shape of a pencil: click it to start editing"
+                src="icons/pencil-solid.svg"
+                alt="check-shaped button: click it or press enter to finish editing"
               />
             </button>
-          </form>
+
+            <button
+              id="edit-finish<%= item.id %>"
+              type="submit"
+              form="edit<%= item.id %>"
+              hidden
+            >
+              <img
+                src="icons/check-solid.svg"
+                alt="pencil-shaped button: click it to start editing"
+              />
+            </button>
+          </div>
         </div>
 
         <% })} %>
 
-        <form class="item add" action="/add" method="post">
+        <form class="item add-task" action="/add" method="post">
           <input
             type="text"
-            name="addTask"
+            name="add-task"
             placeholder="Write a new task"
             autocomplete="off"
             autofocus
@@ -92,9 +102,10 @@
 
       function handler(id) {
         document.querySelector(`#task${id}`).hidden = true;
-        document.querySelector(`#edit${id}`).hidden = true;
-        document.querySelector(`#input${id}`).hidden = false;
-        document.querySelector(`#submit${id}`).hidden = false;
+        document.querySelector(`#edit-start${id}`).hidden = true;
+        document.querySelector(`#edit-input${id}`).hidden = false;
+        document.querySelector(`#edit-input${id}`).focus();
+        document.querySelector(`#edit-finish${id}`).hidden = false;
       }
     </script>
   </body>

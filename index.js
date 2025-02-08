@@ -25,20 +25,22 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/add', async (req, res) => {
-  await db.query('INSERT INTO items (task) VALUES ($1)', [req.body.addTask]);
+  await db.query('INSERT INTO items (task) VALUES ($1)', [
+    req.body['add-task'],
+  ]);
   res.redirect('/');
 });
 
 app.post('/edit', async (req, res) => {
   await db.query('UPDATE items SET task = ($1) WHERE id = $2', [
-    req.body.editTask,
-    req.body.editId,
+    req.body['edit-task'],
+    req.body['edit-id'],
   ]);
   res.redirect('/');
 });
 
 app.post('/delete', async (req, res) => {
-  await db.query('DELETE FROM items WHERE id = $1', [req.body.deleteId]);
+  await db.query('DELETE FROM items WHERE id = $1', [req.body['delete-id']]);
   res.redirect('/');
 });
 
