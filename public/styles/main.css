@@ -79,7 +79,7 @@ button {
 
 .add-task button {
   height: 32px;
-  width: 32px;
+  min-width: 32px;
   border-radius: 50%;
   font-size: 24px;
   background-color: #a683e3;
@@ -92,7 +92,7 @@ footer {
   font-size: 18px;
 }
 
-@media (max-width: 400px) {
+@media (width < 420px) {
   main {
     width: 300px;
   }
@@ -103,10 +103,5 @@ footer {
 
   input[type='text'] {
     width: 209px;
-  }
-
-  .add-task input[type='text'] {
-    margin-left: 5px;
-    width: 223px;
   }
 }
