@@ -1,22 +1,18 @@
 # Permalist
 
-Modified Version Screenshot #1
+## Modified Version Screenshots
 ![permalist modified version screenshot #1](screenshots/permalist-modified-screenshot1.jpg)
-
-Modified Version Screenshot #2
 ![permalist modified version screenshot #2](screenshots/permalist-modified-screenshot2.jpg)
-
-Modified Version Screenshot #3 - Responsive\
 ![permalist modified version screenshot #3 - responsive](screenshots/permalist-modified-screenshot3-responsive.jpg)
 
-Original Version Screenshot
+## Original Version Screenshot
 ![permalist original version screenshot](screenshots/permalist-original-screenshot.jpg)
 
 ## How to Use
 
-1. Download and install Postgres
+1. Download and install Node.js and PostgreSQL
 2. Configure the following, either in index.js or via a dotenv file:
-    - port (usually 5432 for Postgres)
+    - port
     - host
     - database    
     - user
