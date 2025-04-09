@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -6,10 +8,11 @@
 
 body {
   min-height: 100vh;
-  background-image: linear-gradient(#e4e9fd, #a683e3);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: 'Inter', sans-serif;
+  background-image: linear-gradient(#e4e9fd, #a683e3);
 }
 
 main {
@@ -22,6 +25,7 @@ h1 {
   padding: 10px;
   border-radius: 5px;
   text-align: center;
+  font-weight: 600;
   background-color: #a683e3;
   box-shadow: 5px 5px 10px #00000025;
 }

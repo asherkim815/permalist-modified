@@ -2,14 +2,12 @@ import express from 'express';
 import pg from 'pg';
 import 'dotenv/config';
 
-const port = 3000;
-
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 const db = new pg.Client({
-  port: process.env.PORT,
+  port: process.env.DB_PORT,
   host: process.env.HOST,
   database: process.env.DATABASE,
   user: process.env.USER,
@@ -44,6 +42,6 @@ app.post('/delete', async (req, res) => {
   res.redirect('/');
 });
 
-app.listen(port, () => {
-  console.log(`Serving on port ${port}`);
+app.listen(process.env.APP_PORT, () => {
+  console.log(`Serving on port ${process.env.APP_PORT}`);
 });

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Permalist</title>
-    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/index.css" />
   </head>
 
   <body>
@@ -12,7 +12,7 @@
       <h1></h1>
 
       <div class="items">
-        <% if (locals.items) { items.forEach(item => { %>
+        <% locals.items && items.forEach(item => { %>
 
         <div class="item">
           <div class="item-part1">
@@ -63,7 +63,7 @@
           </div>
         </div>
 
-        <% })} %>
+        <% }) %>
 
         <form class="item add-task" action="/add" method="post">
           <input
@@ -93,12 +93,12 @@
       const now = new Date();
       const todayDate = now.toLocaleDateString();
       const todayDay = days[now.getDay()];
-      const year = now.getFullYear();
+      const thisYear = now.getFullYear();
 
       document.querySelector('h1').innerText = `${todayDate} ${todayDay}`;
       document.querySelector(
         'footer'
-      ).innerText = `©${year} The App Brewery \n Modified by Asher Kim`;
+      ).innerText = `©${thisYear} The App Brewery \n Modified by Asher Kim`;
 
       function handler(id) {
         document.querySelector(`#task${id}`).hidden = true;
