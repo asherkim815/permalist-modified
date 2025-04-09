@@ -10,14 +10,14 @@
 
 ## How to Use
 
-1. Download and install Node.js and PostgreSQL
+1. Download and install Node.js and postgreSQLQL
 2. Configure the following, either in index.js or via a dotenv file:
     - port
     - host
     - database    
     - user
     - password
-3. Run queries.sql queries in Postgres
+3. Run queries.sql queries in postgreSQL
 4. Start the server and send a get request
 
 ## About the App
@@ -28,6 +28,6 @@ I modified it the following way:
 1. Add new features
     - Add date and day
     - Autofocus on input when editing an item
-    - Prevent ejs crash from having 0 items by adding "<%= if (locals..."
+    - Prevent ejs crash from having 0 items by adding "<%= locals.items && ..."
 2. Rework UX
 3. Minimize codes (most notably css)
