@@ -50,12 +50,12 @@ h1 {
   align-items: center;
 }
 
-input[type='checkbox'] {
-  margin: 0 15px 0 5px;
-}
-
 p {
   font-size: 18px;
+}
+
+input[type='checkbox'] {
+  margin: 0 15px 0 5px;
 }
 
 input[type='text'] {
