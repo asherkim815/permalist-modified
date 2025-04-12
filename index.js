@@ -23,15 +23,15 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/add', async (req, res) => {
-  await db.query('INSERT INTO items (task) VALUES ($1)', [
-    req.body['add-task'],
+  await db.query('INSERT INTO items (item) VALUES ($1)', [
+    req.body['add-item'],
   ]);
   res.redirect('/');
 });
 
 app.post('/edit', async (req, res) => {
-  await db.query('UPDATE items SET task = ($1) WHERE id = $2', [
-    req.body['edit-task'],
+  await db.query('UPDATE items SET item = ($1) WHERE id = $2', [
+    req.body['edit-item'],
     req.body['edit-id'],
   ]);
   res.redirect('/');

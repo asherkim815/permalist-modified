@@ -9,13 +9,16 @@
 
   <body>
     <main>
-      <h1></h1>
+      <section id="date">
+        <h1></h1>
+      </section>
 
-      <div class="items">
+      <section id="items">
         <% locals.items && items.forEach(item => { %>
 
-        <div class="item">
-          <div class="item-part1">
+        <article class="item">
+          <div class="inputs">
+            <!-- checkbox for deleting item-->
             <form action="/delete" method="post">
               <input
                 type="checkbox"
@@ -24,31 +27,37 @@
                 onchange="this.form.submit()"
               />
             </form>
-            <p id="task<%= item.id %>"><%= item.task %></p>
+
+            <!-- item description, hidden while editing -->
+            <p id="item<%= item.id %>"><%= item.item %></p>
+
+            <!-- item description, editable, shown while editing -->
             <form id="edit<%= item.id %>" action="/edit" method="post">
               <input type="hidden" name="edit-id" value="<%= item.id %>" />
               <input
                 id="edit-input<%= item.id %>"
                 type="text"
-                name="edit-task"
-                value="<%= item.task %>"
+                name="edit-item"
+                value="<%= item.item %>"
                 autocomplete="off"
                 hidden
               />
             </form>
           </div>
 
-          <div class="item-part2">
+          <div>
+            <!-- pencil-shaped button, hidden while editing -->
             <button
               id="edit-start<%= item.id %>"
               onclick="handler('<%= item.id %>')"
             >
               <img
                 src="icons/pencil-solid.svg"
-                alt="check-shaped button: click it or press enter to finish editing"
+                alt="pencil-shaped button: click it to start editing"
               />
             </button>
 
+            <!-- check-shaped button, shown while editing -->
             <button
               id="edit-finish<%= item.id %>"
               type="submit"
@@ -57,30 +66,33 @@
             >
               <img
                 src="icons/check-solid.svg"
-                alt="pencil-shaped button: click it to start editing"
+                alt="check-shaped button: click it or press enter to finish editing"
               />
             </button>
           </div>
-        </div>
-
+        </article>
         <% }) %>
 
-        <form class="item add-task" action="/add" method="post">
-          <input
-            type="text"
-            name="add-task"
-            placeholder="Write a new task"
-            autocomplete="off"
-            autofocus
-          />
-          <button type="submit">+</button>
-        </form>
-      </div>
+        <!-- bottommost input and button for adding new item -->
+        <article class="add-item">
+          <form action="/add" method="post">
+            <input
+              type="text"
+              name="add-item"
+              placeholder="Add a new item"
+              autocomplete="off"
+              autofocus
+            />
+            <button type="submit"><p>+</p></button>
+          </form>
+        </article>
+      </section>
     </main>
 
     <footer></footer>
 
     <script>
+      // time-related settings
       const days = [
         'Sunday',
         'Monday',
@@ -94,18 +106,31 @@
       const todayDate = now.toLocaleDateString();
       const todayDay = days[now.getDay()];
       const thisYear = now.getFullYear();
+      const footerText = `©${thisYear} The App Brewery \n Modified by Asher Kim`;
 
       document.querySelector('h1').innerText = `${todayDate} ${todayDay}`;
-      document.querySelector(
-        'footer'
-      ).innerText = `©${thisYear} The App Brewery \n Modified by Asher Kim`;
+      document.querySelector('footer').innerText = footerText;
 
+      // reload event listeners
+      document.querySelector('body').addEventListener('click', (e) => {
+        if (e.target === document.querySelector('body')) {
+          location.reload();
+        }
+      });
+
+      document.addEventListener('keyup', (e) => {
+        if (e.key === 'Escape') {
+          location.reload();
+        }
+      });
+
+      // handler function
       function handler(id) {
-        document.querySelector(`#task${id}`).hidden = true;
+        document.querySelector(`#item${id}`).hidden = true;
         document.querySelector(`#edit-start${id}`).hidden = true;
         document.querySelector(`#edit-input${id}`).hidden = false;
-        document.querySelector(`#edit-input${id}`).focus();
         document.querySelector(`#edit-finish${id}`).hidden = false;
+        document.querySelector(`#edit-input${id}`).focus();
       }
     </script>
   </body>

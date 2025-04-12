@@ -6,12 +6,18 @@
   box-sizing: border-box;
 }
 
+:root,
+input,
+button {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+}
+
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-family: 'Inter', sans-serif;
   background-image: linear-gradient(#e4e9fd, #a683e3);
 }
 
@@ -20,9 +26,10 @@ main {
   margin: 0 auto;
 }
 
+/* date section */
 h1 {
   margin: 50px 0;
-  padding: 10px;
+  padding: 10px 0;
   border-radius: 5px;
   text-align: center;
   font-weight: 500;
@@ -31,13 +38,14 @@ h1 {
   box-shadow: 5px 5px 10px #00000025;
 }
 
-.items {
+/* items section */
+#items {
   border-radius: 5px;
   background-color: white;
   box-shadow: 5px 5px 10px #00000025;
 }
 
-.item {
+article.item {
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -45,13 +53,9 @@ h1 {
   border-bottom: 1px solid #a683e350;
 }
 
-.item-part1 {
+div.inputs {
   display: flex;
   align-items: center;
-}
-
-p {
-  font-size: 18px;
 }
 
 input[type='checkbox'] {
@@ -59,15 +63,13 @@ input[type='checkbox'] {
 }
 
 input[type='text'] {
-  padding: 5px;
-  width: 309px;
+  width: 300px;
   border: none;
   outline: none;
-  font-size: 18px;
 }
 
 input[type='text']:focus {
-  box-shadow: inset 0 -3px #a683e3;
+  box-shadow: 0 3px #a683e3;
 }
 
 button {
@@ -77,36 +79,39 @@ button {
   background: none;
 }
 
-.add-task input[type='text'] {
-  margin-left: 5px;
-  width: 323px;
+article.add-item > form {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.add-task button {
+.add-item input {
+  margin-left: 5px;
+}
+
+.add-item button {
   height: 32px;
-  min-width: 32px;
+  width: 32px;
   border-radius: 50%;
-  font-size: 24px;
   background-color: #a683e3;
   color: white;
+}
+
+.add-item button > p {
+  margin-bottom: 2px;
 }
 
 footer {
   margin: 50px 0;
   text-align: center;
-  font-size: 18px;
 }
 
-@media (width < 420px) {
+@media (width < 400px) {
   main {
     width: 300px;
   }
 
-  h1 {
-    padding: 10px 0;
-  }
-
   input[type='text'] {
-    width: 209px;
+    width: 200px;
   }
 }
