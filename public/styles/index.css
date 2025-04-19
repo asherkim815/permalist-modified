@@ -98,7 +98,7 @@ article.add-item > form {
 }
 
 .add-item button > p {
-  margin-bottom: 2px;
+  padding-bottom: 2px;
 }
 
 footer {
