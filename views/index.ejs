@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Permalist</title>
+    <link rel="stylesheet" href="/styles/index.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Permalist</h1>
+      <form action="/sign-out" method="post">
+        <button type="submit">Sign Out</button>
+      </form>
+    </header>
+
+    <div id="main-footer-container">
+      <main>
+        <section id="date">
+          <h2></h2>
+        </section>
+
+        <section id="items">
+          <% locals.items && items.forEach(item => { %>
+          <article class="item">
+            <div class="item-components">
+              <!-- checkbox for deleting item -->
+              <form action="/delete" method="post">
+                <input
+                  type="checkbox"
+                  name="delete-id"
+                  value="<%= item.id %>"
+                  onchange="this.form.submit()"
+                />
+              </form>
+
+              <!-- item description, hidden while editing -->
+              <p id="item<%= item.id %>"><%= item.item %></p>
+
+              <!-- item description, shown while editing -->
+              <form id="edit<%= item.id %>" action="/edit" method="post">
+                <input type="hidden" name="edit-id" value="<%= item.id %>" />
+                <input
+                  id="edit-input<%= item.id %>"
+                  type="text"
+                  name="edit-item"
+                  value="<%= item.item %>"
+                  autocomplete="off"
+                  hidden
+                />
+              </form>
+            </div>
+
+            <div>
+              <!-- pencil-shaped button, hidden while editing -->
+              <button
+                id="edit-start<%= item.id %>"
+                onclick="handler('<%= item.id %>')"
+              >
+                <img
+                  src="icons/pencil-solid.svg"
+                  alt="pencil-shaped button: click it to start editing"
+                />
+              </button>
+
+              <!-- check-shaped button, shown while editing -->
+              <button
+                id="edit-finish<%= item.id %>"
+                type="submit"
+                form="edit<%= item.id %>"
+                hidden
+              >
+                <img
+                  src="icons/check-solid.svg"
+                  alt="check-shaped button: click it or press enter to finish editing"
+                />
+              </button>
+            </div>
+          </article>
+          <% }) %>
+
+          <!-- bottommost input and button for adding new item -->
+          <article class="add-item">
+            <form action="/add" method="post">
+              <input
+                type="text"
+                name="add-item"
+                placeholder="Add a new item"
+                autocomplete="off"
+                autofocus
+              />
+              <button type="submit"><p>+</p></button>
+            </form>
+          </article>
+        </section>
+      </main>
+      <footer></footer>
+    </div>
+
+    <script>
+      // time-related settings
+      const days = [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+      ];
+      const now = new Date();
+      const todayDate = now.toLocaleDateString();
+      const todayDay = days[now.getDay()];
+      const thisYear = now.getFullYear();
+      const footerText = `©${thisYear} The App Brewery \n Modified by Asher Kim`;
+
+      document.querySelector('h2').innerText = `${todayDate} ${todayDay}`;
+      document.querySelector('footer').innerText = footerText;
+
+      // reload event listeners
+      document.addEventListener('click', (e) => {
+        if (e.target === document.querySelector('div#main-footer-container')) {
+          location.reload();
+        }
+      });
+
+      document.addEventListener('keyup', (e) => {
+        if (e.key === 'Escape') {
+          location.reload();
+        }
+      });
+
+      // handler function
+      function handler(id) {
+        document.querySelector(`#item${id}`).hidden = true;
+        document.querySelector(`#edit-start${id}`).hidden = true;
+        document.querySelector(`#edit-input${id}`).hidden = false;
+        document.querySelector(`#edit-finish${id}`).hidden = false;
+        document.querySelector(`#edit-input${id}`).focus();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Permalist</title>
+    <link rel="stylesheet" href="/styles/auth.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Permalist</h1>
+    </header>
+
+    <main>
+      <section id="log-in">
+        <form action="/auth/local" method="post">
+          <h2>Log In</h2>
+          <input
+            type="email"
+            name="username"
+            value="<%= locals.logInUsername && logInUsername %>"
+            placeholder="Email"
+          />
+          <input type="password" name="password" placeholder="Password" />
+          <button class="local-button" type="submit">Log In</button>
+        </form>
+
+        <div class="oauth-container">
+          <a href="/auth/discord"
+            ><button class="oauth-button discord">
+              <img src="/logos/discord-logo.png" alt="discord logo" />Log in
+              with Discord
+            </button></a
+          >
+
+          <a href="/auth/github"
+            ><button class="oauth-button github">
+              <img src="/logos/github-logo.png" alt="github logo" />Log in with
+              GitHub
+            </button></a
+          >
+
+          <a href="/auth/google"
+            ><button class="oauth-button google">
+              <img src="/logos/google-logo.png" alt="google logo" />Log in with
+              Google
+            </button></a
+          >
+        </div>
+      </section>
+
+      <section id="sign-up">
+        <form action="/sign-up" method="post">
+          <h2>Sign Up</h2>
+          <input
+            type="email"
+            name="username"
+            value="<%= locals.signUpUsername && signUpUsername %>"
+            placeholder="Email"
+          />
+          <input type="password" name="password" placeholder="Password" />
+          <button class="local-button" type="submit">Sign Up</button>
+        </form>
+      </section>
+    </main>
+
+    <% if (locals.message) { var message = message }%>
+
+    <script>
+      var message = '<%= message %>';
+      if (message) alert(message);
+    </script>
+  </body>
+</html>
