@@ -4,7 +4,7 @@
 
 ![permalist modified version screenshot #1 - main page](screenshots/permalist-modified-screenshot1.jpg)
 ![permalist modified version screenshot #2 - main page responsive](screenshots/permalist-modified-screenshot1-responsive.jpg)
-![permalist modified version screenshot #3 - auth page](screenshots/permalist-modified-screenshot3-responsive2.jpg)
+![permalist modified version screenshot #3 - auth page](screenshots/permalist-modified-screenshot2.jpg)
 ![permalist modified version screenshot #2 - auth page responsive](screenshots/permalist-modified-screenshot2-responsive.jpg)
 
 ## Original Version Screenshot
