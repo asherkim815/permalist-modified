@@ -13,10 +13,10 @@
 
 ## About the App
 
-To-do list app which, upon logging in or registering (with email or OAuth 2.0),\
-saves and loads items using database (PostgreSQL).\
+To-do list app which, upon authenticating (with email or OAuth 2.0), saves in and loads from database (PostgreSQL) to-do items.
 
-This project came from a Udemy course by Angela Yu, The Complete 2024 Web Development Bootcamp.\
+This project came from a Udemy course by Angela Yu, The Complete 2024 Web Development Bootcamp.
+
 I modified it the following way:
 
 1. Add authentication
